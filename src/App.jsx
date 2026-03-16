@@ -1,3 +1,5 @@
+import NeuralBackground from "./components/NeuralBackground";
+import NeuralCursor from "./components/NeuralCursor";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -10,6 +12,9 @@ import CTA from "./components/CTA";
 function App() {
   return (
     <div className="bg-[#05060a] min-h-screen text-white">
+      <NeuralBackground />
+      <NeuralCursor />
+
       <Navbar />
       <Hero />
       <Services />

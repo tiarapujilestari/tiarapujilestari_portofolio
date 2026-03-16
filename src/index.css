@@ -1,9 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ================= GLOBAL ================= */
+
 body {
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
+
+/* ================= GLITCH TEXT ================= */
 
 .glitch {
   position: relative;
@@ -17,7 +23,7 @@ body {
   position: absolute;
   left: 0;
   width: 100%;
-  overflow: hidden;
+  pointer-events: none;
 }
 
 .glitch::before {
@@ -75,57 +81,73 @@ body {
   }
 }
 
-@keyframes glitchParticle {
+/* ================= NEURAL CURSOR ================= */
+
+.neural-node {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a855f7;
+  box-shadow:
+    0 0 10px #a855f7,
+    0 0 20px #9333ea;
+  pointer-events: none;
+  animation: neuralFade 0.8s ease-out forwards;
+}
+
+@keyframes neuralFade {
   0% {
-    transform: scale(1) translate(0, 0);
     opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
+/* ================= CYBER MATRIX BACKGROUND ================= */
+
+.cyber-matrix-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -10;
+  overflow: hidden;
+}
+
+/* floating + */
+
+.cyber-plus {
+  position: absolute;
+  color: rgba(168, 85, 247, 0.25);
+  font-weight: bold;
+
+  text-shadow:
+    0 0 10px rgba(168, 85, 247, 0.6),
+    0 0 20px rgba(168, 85, 247, 0.4),
+    0 0 40px rgba(168, 85, 247, 0.2);
+
+  animation: cyberFloat linear infinite;
+}
+
+@keyframes cyberFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.2;
   }
 
   50% {
-    transform: scale(1.5) translate(-5px, 5px);
-    opacity: 0.7;
+    transform: translateY(-60px) rotate(180deg);
+    opacity: 0.6;
   }
 
   100% {
-    transform: scale(0) translate(10px, -10px);
-    opacity: 0;
+    transform: translateY(0px) rotate(360deg);
+    opacity: 0.2;
   }
-}
-
-.animate-glitch {
-  animation: glitchParticle 0.6s linear forwards;
-}
-
-@keyframes glitchPixel {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-
-  20% {
-    transform: translate(-6px, 4px) scale(1.2);
-    background: #ff00ff;
-  }
-
-  40% {
-    transform: translate(6px, -4px) scale(1);
-    background: #00ffff;
-  }
-
-  60% {
-    transform: translate(-4px, 6px) scale(1.3);
-  }
-
-  80% {
-    transform: translate(4px, -6px) scale(1);
-  }
-
-  100% {
-    transform: translate(0, 0) scale(0);
-    opacity: 0;
-  }
-}
-
-.animate-glitchPixel {
-  animation: glitchPixel 0.6s linear forwards;
 }
